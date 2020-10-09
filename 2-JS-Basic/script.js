@@ -93,14 +93,228 @@ console.log(x, y);
 x = x*2;
 x *= 2; //두개는 같은 의미
 
+/*****************************
+* CODING CHALLENGE 1
+*/
+
+/*
+Mark and John are trying to compare their BMI (Body Mass Index), 
+which is calculated using the formula: BMI = mass / height^2 = mass / (height * height). 
+(mass in kg and height in meter).
+
+1. Store Mark's and John's mass and height in variables
+2. Calculate both their BMIs
+3. Create a boolean variable containing information about whether Mark has a higher BMI than John.
+4. Print a string to the console containing the variable from step 3. 
+    (Something like "Is Mark's BMI higher than John's? true"). 
+
+GOOD LUCK 😀
+*/
+
+/*
+var marksHeight, marksMass, johnsHeight, johnsMass, marksBMI, johnsBMI;
+
+marksHeight = prompt(`Please input Marks's Height`);
+marksMass = prompt(`Please input Mark's Mass`);
+johnsHeight = prompt(`Please input John's height`);
+johnsMass = prompt(`Please input John's Mass`);
 
 
+marksBMI = marksMass/(marksHeight*marksHeight);
+johnsBMI = johnsMass/(Math.pow(johnsHeight,2));
+
+console.log("Mark's BMI : " + marksBMI);
+console.log(`John's BMI : ${johnsBMI}`);
+
+var isMarksBmiHigerThanJohn = marksBMI>johnsBMI;
+console.log("Is Mark's BMI higher than John's ? " + isMarksBmiHigerThanJohn);
+*/
+
+/************************************
+ * If / else statements
+ */
+
+var firstName = 'John';
+var civilStatus = 'married';
+
+if (civilStatus === 'married'){
+    console.log(firstName + ' is married!');
+} else{
+    console.log(firstName + ' will hopefully marry soon :)');
+}
+
+var isMarried = false;
+if (isMarried){
+    console.log(firstName + ' is married!');
+} else{
+    console.log(firstName + ' will hopefully marry soon :)');
+}
+
+/******************************************
+ * Boolean logic
+ */
+
+var firstName = 'John';
+var age = 20;
+
+if(age < 13){
+    console.log(firstName + ' is a boy');
+} else if(age >= 13 && age < 20){    //between 13 and 20
+    console.log(firstName + ' is a teenager');
+} else if(age >= 20 && age < 30){
+    console.log(firstName + ' is a young man');
+}else{
+    console.log(firstName + ' is a man');
+}
+
+/***********************************
+ * The Ternary Operator and Switch Statements
+ */
+
+var firstName = 'John';
+var age = 16;
+
+age >= 18 ? console.log(firstName + " drinks beer.") : console.log(firstName + " drinks juice");
+
+var drink = age >= 18 ? 'beer' : 'juice';
+console.log(drink);
+
+//Switch statement
+var job = 'instructor';
+switch (job) {
+    case 'teacher':
+    case 'instructor' : 
+        console.log(firstName + ' teaches kids how to code.');
+        break;
+    case 'driver':
+        console.log(firstName + ' drives an uber in Lisbon'); 
+        break;
+    case 'designer' : 
+        console.log(firstName + ' designs beautiful websites');
+        break;
+    default:
+        console.log(firstName + ' does something else');
+        break;
+}
+
+age = 18;
+
+switch (true) {
+    case age < 13:
+        console.log(firstName + ' is a boy');
+        break;
+    case age >= 13 && age < 20:
+        console.log(firstName + ' is a teenager');
+        break;
+    case age >=20 && age < 30 : 
+        console.log(firstName + ' is a young man.');
+        break;
+    default:
+        console.log(firstName + ' is a man');
+        break;
+}
+
+/************************************
+ * Truthy and Falsy values and equality operators
+ */
+//falsy value is the value that is considered false when evaluated in an if/else statement condition. and the values that are falsy in JavaScript
+
+//falsy values : undefined, null, 0, ''(빈 스트링), NaN
+//truthy values : Not falsy values
+
+var height;
+height = 0;
+if(height || height === 0){
+    console.log('Variable is defined');
+}else{
+    console.log('Variable has Not been defined');
+}
+
+// Equality operators
+height = 23;
+if(height == '23'){
+    console.log('The ==operator does type coercion!');
+}
+
+/*****************************
+* CODING CHALLENGE 2
+*/
+
+/*
+John and Mike both play basketball in different teams. 
+In the latest 3 games, John's team scored 89, 120 and 103 points, while Mike's team scored 116, 94 and 123 points.
+
+1. Calculate the average score for each team
+2. Decide which teams wins in average (highest average score), and print the winner to the console.
+ Also include the average score in the output.
+3. Then change the scores to show different winners.
+ Don't forget to take into account there might be a draw (the same average score)
+
+4. EXTRA: Mary also plays basketball, and her team scored 97, 134 and 105 points.
+ Like before, log the average winner to the console.
+  HINT: you will need the && operator to take the decision.
+   If you can't solve this one, just watch the solution, it's no problem :)
+5. Like before, change the scores to generate different winners, keeping in mind there might be draws.
+
+GOOD LUCK 😀
+*/
+
+var johnTeamScore = [89, 120, 103];
+var mikeTeamScore = [116, 94, 123];
+var maryTeamScore = [97, 134, 105];
+
+var average = (score) =>{
+    var sum,average;
+    sum = 0;
+    score.forEach(element => {
+        sum += element;
+    });
+    return average = sum/score.length;
+}
+
+var johnTeamAverage = average(johnTeamScore);
+var mikeTeamAverage = average(mikeTeamScore);
+var maryTeamAverage = average(maryTeamScore);
+console.log(`johnTeamAverage : ${johnTeamAverage}`);
+console.log(`mikeTeamAverage : ${mikeTeamAverage}`);
+console.log(`maryTeamAverage : ${maryTeamAverage}`);
+
+var winner,winnersScore;
+
+if(johnTeamAverage > mikeTeamAverage && johnTeamAverage > maryTeamAverage){
+    winner = 'john';
+}else if(mikeTeamAverage > johnTeamAverage && mikeTeamAverage > maryTeamAverage){
+    winner = 'mike';
+}else if(maryTeamAverage > johnTeamAverage && maryTeamAverage > mikeTeamAverage){
+    winner = 'mary';
+}else if(johnTeamAverage === mikeTeamAverage && johnTeamAverage > maryTeamAverage){
+    winner = 'john and mike';
+}else if(johnTeamAverage === maryTeamAverage && johnTeamAverage > mikeTeamAverage){
+    winner = 'john and mary';
+}else if(mikeTeamAverage === maryTeamAverage && mikeTeamAverage > johnTeamAverage){
+    winner = 'mike and mary';
+}else{
+    winner = 'draw'
+}
 
 
+switch(winner){
+    case 'john':
+    case 'john and mike':
+    case 'john and mary':
+    case 'draw' : 
+        winnersScore = johnTeamAverage;
+        break;
+    case 'mike' :
+    case 'mike and mary' :
+        winnersScore = mikeTeamAverage;
+        break;
+    case 'mary' : 
+        winnersScore = maryTeamAverage;
+        break;
+    default :
+        winnersScore = johnTeamAverage
+}
 
-
-
-
-
-
+console.log(`Winner is ${winner} and average Score is ${winnersScore}`);
 

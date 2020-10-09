@@ -318,3 +318,63 @@ switch(winner){
 
 console.log(`Winner is ${winner} and average Score is ${winnersScore}`);
 
+/***********************************
+ * Functions
+ */
+
+ function calculateAge(birthYear){
+     return 2020 - birthYear;
+ }
+
+ var ageJohn = calculateAge(1990);
+ var ageMike = calculateAge(1978);
+ var ageJane = calculateAge(1980);
+ console.log(ageJohn, ageMike, ageJane);
+
+ function yearsUntilRetirement(year, firstName){
+     var age = calculateAge(year);
+     var retirement = 65 - age;
+
+     if(retirement > 0){
+        console.log(firstName + ' retires in ' + retirement + ' years.');
+     }else{
+         console.log(firstName + ' is already retired.');
+     }
+ }
+
+ yearsUntilRetirement(1990, 'John');
+ yearsUntilRetirement(1945, 'Mike');
+ yearsUntilRetirement(1979, 'Jane');
+
+ /*********************************
+  * Function Statements and Expressions
+  */
+
+  //Function declaration
+//   function whatDoYouDo(job, firstName){
+
+//   }
+
+  //Function expression
+  var whatDoYouDo = function(job, firstName){
+    switch(job){
+        case 'teacher' : 
+            return firstName + ' is ' + job;  //return keyword do immediately exit the function.
+        case 'driver' :
+            return firstName + ' is ' + job;
+        case 'designer' : 
+            return firstName + ' is ' + job;
+        default : 
+            return firstName + ' does something else';
+    }
+  }
+
+  console.log(whatDoYouDo('teacher', 'John'));
+  console.log(whatDoYouDo('designer', 'Jane'));
+  console.log(whatDoYouDo('retired', 'Mark'));
+
+  function sayHi(name){
+      return name + ' Hi!';
+  }
+
+  console.log(sayHi('JE'));

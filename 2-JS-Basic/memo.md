@@ -115,3 +115,38 @@ if (height === '23'){
 
 ===연산자는 타입까지 비교하기 때문에 숫자23과 문자열23이 다르다고 판단해 값이 false가 되는 것이다.    
 [내 블로그](https://xhwogusxh.tistory.com/46?category=868400) 에도 정리해 두었다.
+
+-----------------------
+
+### Function Statements(Declarations) and Expressions
+
+* Function Declarations     
+    ```
+    function whatDoyouDo(){
+
+    }
+    ```
+    함수를 이런식으로 선언하는게 Function Statements(Declarations)
+
+* Function Expressions
+    ```
+    var whatDoyouDo = function(){
+
+    }
+    ```
+    이런식으로 선언하는게 Function Expressions이다.    
+
+이 둘의 차이는,        
+JavaScript expressions are pieces of code that always produce value, and it doesn't matter how long they are as long as the code results in a single value, and then it is an expression.
+
+statments, they do just perform actions.So, they do things but they do not produce immediate results. They don't produce any immediate value, and so they are called statements.
+
+function expressions produce an immediate result, while function declarations do not.
+
+
+라고 설명했는데, Statements의 경우 리턴값을 받아줄 변수가 없기 때문에 즉각적인 result를 못만드는 차이 같다.(내생각)    
+이 외에도, 클로저나 다른함수의 인자값으로 쓰일때, IIFE방식으로 쓰일 수 있냐 없냐의 차이같다.(위의 3개 전부 Expression방식일 때 사용가능)
+함수 선언식보다는 함수 표현식을 지향하는 듯 하다. result와 관련된 부분은 아직 잘 모르겠으나, 확실히 함수 선언식(Function Statements(declarations))보다는 함수 표현식(Function Expressions)를 사용하는 편이 더 좋고, 지향해야 할 방향인 것 같다.     
+
+참조 : 
+The Complete JavaScript Course 2020: Build Real Projects!20강, [Function Declarations vs. Function Expressions](https://medium.com/@mandeep1012/function-declarations-vs-function-expressions-b43646042052), [함수 표현식 vs 함수 선언식](https://joshua1988.github.io/web-development/javascript/function-expressions-vs-declarations/#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8%EC%8B%9D%EA%B3%BC-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90)

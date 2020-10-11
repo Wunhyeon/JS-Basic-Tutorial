@@ -150,3 +150,23 @@ function expressions produce an immediate result, while function declarations do
 
 참조 : 
 The Complete JavaScript Course 2020: Build Real Projects!20강, [Function Declarations vs. Function Expressions](https://medium.com/@mandeep1012/function-declarations-vs-function-expressions-b43646042052), [함수 표현식 vs 함수 선언식](https://joshua1988.github.io/web-development/javascript/function-expressions-vs-declarations/#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8%EC%8B%9D%EA%B3%BC-%ED%91%9C%ED%98%84%EC%8B%9D%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90)
+
+------------------------------
+## Objects and properties
+워낙 중요한 항목이라서, MDN문서를 직접 읽어보는 편이 가장 좋을 것 같다.
+[MDN-Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), [MDN-ObjectInitializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), 그리고 강의 25강, 26강    
+
+내가 여기서 중요하다고 생각한 부분은 
+```
+john.job = 'designer';
+john['isMarried'] = true;
+
+var x = 'birthYear';
+john[x] = 1990;
+```
+이런식으로 property를 선언하거나, 변경할 수 있다는 점.(위의 방식2개는 같다. (.을 이용하는 방식과 ['']를 이용하는 방식. []를 이용하는 방식에서는 []안에 반드시 ''(quatation)을 사용해주어야 한다. 혹은 밑의 var x 처럼 변수에 String이나 char값을 담아서 사용)
+
+## Objects and methods
+Object안에 function을 정의한 property를 method라고 한다. 나중에 Object에 대해 다루는 강의가 또 있기 때문에 Object에 관한 개념은 우선 여기까지 정리하는 걸로 한다. Object는 정말 중요한 개념이기 때문에, 확실히 하고 가는 편이 좋다. 또, this가 엄청 중요한 개념이기 때문에 확실히 정리하는 게 좋다.    
+* this
+    [내 블로그this](https://xhwogusxh.tistory.com/49?category=868400), [MDN - this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this), [StackOverflow - this](https://stackoverflow.com/questions/3127429/how-does-the-this-keyword-work)

@@ -378,3 +378,184 @@ console.log(`Winner is ${winner} and average Score is ${winnersScore}`);
   }
 
   console.log(sayHi('JE'));
+
+  /*******************************************
+   * Arrays
+   */
+
+   //Initialize new array
+   var names= ['John', 'Mark', 'Jane'];
+   var years = new Array(1990, 1969, 1948);
+   
+   console.log(names[2]);
+   console.log(names.length);
+
+   //Mutate array data
+   names[1] = 'Ben';
+   names[5] = 'Mary';
+   console.log(names);
+
+   names[names.length] = 'Jay';
+   console.log(names);
+
+   //Different data types
+   var john = ['John', 'Smith', 1990, 'designer', false];
+   console.log(john);
+
+   john.push('blue');
+   console.log(john);
+
+   john.unshift('Mr.');
+   console.log(john);
+
+   john.pop();
+   console.log(john);
+
+   john.pop();
+   console.log(john);
+
+   john.shift();
+   console.log(john);
+
+   
+   console.log(john.indexOf(1990));
+   console.log(john.indexOf(23));
+
+  var isDesigner = john.indexOf('designer') === -1 ? 'John is not a designer' : 'John is a designer';
+  console.log(isDesigner);
+  console.log(john.indexOf('designer'));
+  
+/*****************************
+* CODING CHALLENGE 3
+*/
+
+/*
+John and his family went on a holiday and went to 3 different restaurants. The bills were $124, $48 and $268.
+
+To tip the waiter a fair amount, John created a simple tip calculator (as a function). 
+He likes to tip 20% of the bill when the bill is less than $50, 
+15% when the bill is between $50 and $200, and 10% if the bill is more than $200.
+
+In the end, John would like to have 2 arrays:
+1) Containing all three tips (one for each bill)
+2) Containing all three final paid amounts (bill + tip).
+
+(NOTE: To calculate 20% of a value, simply multiply it with 20/100 = 0.2)
+
+GOOD LUCK 😀
+*/
+
+var johnsBillArray = [124, 48, 268];
+
+var tipCalculator = (bill) => {
+    var tip = 0;
+    switch (true) {
+        case bill < 50:
+            tip = bill * 0.2;
+            return tip;
+        
+        case bill >= 50 && bill < 200 : 
+            tip = bill * 0.15;
+            return tip;
+        
+        case bill > 200 : 
+            tip = bill * 0.1;
+            return tip;
+
+        default:
+            break;
+    }
+}
+
+var makeTipArray = (billArray) => {
+    var tipArray = [];
+    var tip = 0;
+    billArray.forEach(function(element){
+        tip = tipCalculator(element);
+        tipArray.push(tip);
+    })
+    return tipArray;
+}
+
+var makeTotalBill = (billArray) => {
+    var tipArray = makeTipArray(billArray);
+    var totalBillArray = [];
+    billArray.forEach((element,index) => {
+        var total = element + tipArray[index];
+        totalBillArray.push(total);
+    })
+
+    // billArray.forEach(function(element, index){
+    //     var total = element + tipArray[index];
+    //     totalBillArray.push(total);
+    // })
+
+    return totalBillArray;
+}
+
+var johnsTipArray = makeTipArray(johnsBillArray);
+var johnsTotalBillArray = makeTotalBill(johnsBillArray);
+
+console.log(johnsBillArray);
+console.log(johnsTipArray);
+console.log(johnsTotalBillArray);
+
+/***********************************
+ * Objects and properties
+ */
+
+ //Object literal
+var john = {
+    firstName : 'John',
+    lastName : 'Smith',
+    birthYear : 1990,
+    family : ['Jane', 'Mark', 'Bob', 'Emily'],
+    job : 'teacher',
+    isMarried : false
+};
+
+console.log(john);
+console.log(john.firstName);
+console.log(john['lastName']);
+var x = 'birthYear';
+console.log(john[x]);
+
+
+//mutate
+john.job = 'designer';
+john['isMarried'] = true;
+
+
+console.log(john);
+
+//new Object syntax
+var jane = new Object();
+jane.name = 'Jane';
+jane['birthYear'] = 1998;
+jane['lastName'] = 'Smith';
+
+
+console.log(jane);
+
+/*************************************8
+ * Objects and methods
+ */
+
+var john = {
+    firstName : 'John',
+    lastName : 'Smith',
+    birthYear : 1990,
+    family : ['Jane', 'Mark', 'Bob', 'Emily'],
+    job : 'teacher',
+    isMarried : false,
+    calcAge : function(){
+        //return 2020 - this.birthYear;   //여기서 this는 john 오브젝트. 즉, 현재의 오브젝트를 이야기한다.
+        this.age = 2020 - this.birthYear;   //여기서 바로  this(john오브젝트)의 새로운 프로퍼티(age)를 set 해주었다.
+    }
+};
+
+console.log(john);
+
+//john.age = john.calcAge();
+
+console.log(john);

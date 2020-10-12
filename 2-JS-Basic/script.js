@@ -556,6 +556,106 @@ var john = {
 
 console.log(john);
 
-//john.age = john.calcAge();
+john.calcAge();
 
 console.log(john);
+
+
+/*****************************
+* CODING CHALLENGE 4
+*/
+
+/*
+Let's remember the first coding challenge where Mark and John compared their BMIs. 
+Let's now implement the same functionality with objects and methods.
+1. For each of them, create an object with properties for their full name, mass, and height
+2. Then, add a method to each object to calculate the BMI. Save the BMI to the object and also return it from the method.
+3. In the end, log to the console who has the highest BMI, together with the full name and the respective BMI. 
+Don't forget they might have the same BMI.
+
+Remember: BMI = mass / height^2 = mass / (height * height). (mass in kg and height in meter).
+
+GOOD LUCK 😀
+*/
+
+var john = {
+    firstName : 'John',
+    lastName : 'Smith',
+    mass : 78,
+    height : 178,
+    calcBmi : function(){
+        this.bmi = this.mass/Math.pow(this.height,2);
+        return this.bmi;
+    }
+}
+
+var mike = {
+    firstName : 'Mike',
+    lastName : 'Tyson',
+    mass : 120,
+    height : 175,
+    calcBmi : function(){
+        this.bmi = this.mass/(this.height * this.height);
+        return this.bmi;
+    }
+}
+
+
+var mary = {
+    firstName : 'Mary',
+    lastName : 'Sarah',
+    mass : 56,
+    height : 165,
+    calcBmi : function(){
+        this.bmi = this.mass/Math.pow(this.height,2);
+        return this.bmi;
+    }
+}
+
+var johnBmi = john.calcBmi();
+var mikeBmi = mike.calcBmi();
+var maryBmi = mary.calcBmi();
+
+var winner = '';
+
+if(johnBmi > mikeBmi && johnBmi > maryBmi){
+    winner = 'john';
+}else if(mikeBmi > johnBmi && mikeBmi > maryBmi){
+    winner = 'mike';
+}else if(maryBmi > johnBmi && maryBmi > mikeBmi){
+    winner = 'mary';
+}else if(johnBmi === mikeBmi && johnBmi > maryBmi){
+    winner = 'john and mike';
+}else if(johnBmi === maryBmi && johnBmi > mikeBmi){
+    winner = 'john and mary';
+}else if(mikeBmi === maryBmi && mikeBmi > johnBmi){
+    winner = 'mike and mary';
+}else{
+    winner = 'draw'
+}
+
+if(winner === 'john'){
+    console.log(`Winner is ${winner} and Bmi is ${john.calcBmi()}`);
+}else if (winner === 'mike'){
+    console.log(`Winner is ${winner} and Bmi is ${mike.calcBmi()}`);
+}else{
+    console.log(`Winner is ${winner} and Bmi is ${mary.calcBmi()}`);
+}
+
+//continue and break statements
+var jin = ['John', 'Smith', 1990, 'designer', false, 'blue'];
+
+for(var i = 0; i < jin.length; i++){
+    if(typeof jin[i] !== 'string') continue;
+    console.log(jin[i]);
+}
+
+for(var i = 0; i < jin.length; i++){
+    if(typeof jin[i] !== 'string') break;
+    console.log(jin[i]);
+}
+console.log("------------");
+//Looping backwards
+for(var i = jin.length -1; i >=0; i--){
+    console.log(jin[i]);
+}

@@ -21,13 +21,14 @@ The player looses his current score when one of them is a 1.
 (Hint: you will need CSS to position the second dice, so take a look at the CSS code for the first one.)
 */
 
-var scores, currentScore, activePlayer, gamePlaying;
+var scores, currentScore, currentScore2, activePlayer, gamePlaying, previousDice, goalScore, goalScoreLock;
 
 
 
 var init = () =>{
     scores = [0,0];
     currentScore = 0;
+    currentScore2 = 0;
     activePlayer = 0;
     gamePlaying = true;
 
@@ -37,6 +38,7 @@ var init = () =>{
     document.getElementById('current-1').textContent = 0;
 
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
 
     document.getElementById('name-0').textContent = 'Player 1';
     document.getElementById('name-1').textContent = 'Player 2';
@@ -48,38 +50,73 @@ var init = () =>{
     document.querySelector('.player-1-panel').classList.remove('winner');
 
     document.querySelector('.player-0-panel').classList.add('active');
+
+    goalScoreLock = true;
+
+    document.querySelector('.goalScore').removeAttribute('readOnly');
+    document.querySelector('.goalScore').value = '';
+    document.querySelector('.goalScore').style.backgroundColor = '';
 }
 
 var nextPlayer = () => {
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
     currentScore = 0;
+    currentScore2 = 0;
     document.querySelector('#current-' + activePlayer).textContent = 0;
     document.querySelector(`.player-${activePlayer}-panel`).classList.toggle('active');
     activePlayer = activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     document.querySelector(`.player-${activePlayer}-panel`).classList.toggle('active');
+    previousDice = 0;
 }
 
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying){
         var dice = Math.floor(Math.random() * 6) + 1;
+        var dice2 = Math.floor(Math.random() * 6) + 1;
+        //var dice = 6;
         var diceDOM = document.querySelector('.dice');
-        if(dice !== 1){
-            diceDOM.style.display = 'block';
-            diceDOM.src = 'dice-'+dice+'.png';
-            currentScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = currentScore;
+        var diceDOM2 = document.querySelector('.dice2');
+        if(!document.querySelector('.goalScore').value){
+
+            goalScore = 100;
+
+            document.querySelector('.goalScore').value = goalScore;
+            document.querySelector('.goalScore').setAttribute("readOnly","true");
+            document.querySelector('.goalScore').style.backgroundColor = 'lightgray';
+        }else{
+            goalScore = document.querySelector('.goalScore').value;
+            document.querySelector('.goalScore').setAttribute("readOnly","true");
+            document.querySelector('.goalScore').style.backgroundColor = 'lightgray';
+        }
+        
+        if(dice !== 1&& dice2 !== 1){
+            //if(previousDice !== 6 || dice !== previousDice){
+                diceDOM.style.display = 'block';
+                diceDOM.src = 'dice-'+dice+'.png';
+                currentScore += dice;
+                //document.querySelector('#current-' + activePlayer).textContent = currentScore;
+                //previousDice = dice;
+                diceDOM2.style.display = 'block';
+                diceDOM2.src = 'dice-'+dice2+'.png';
+                currentScore2 += dice2;
+                document.querySelector('#current-' + activePlayer).textContent = currentScore+currentScore2;
+            //}else{
+              //  nextPlayer();
+            //}  
         }else{
             nextPlayer();
         }
     }
 })
 
+
 document.querySelector('.btn-hold').addEventListener('click',function(){
     if(gamePlaying){
-        scores[activePlayer] += currentScore;
+        scores[activePlayer] += currentScore + currentScore2;
         document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
-        if(scores[activePlayer]>=20){
+        if(scores[activePlayer]>=goalScore){
             document.getElementById('name-'+activePlayer).textContent = 'Winner!';
             document.querySelector(`.player-${activePlayer}-panel`).classList.add('winner');
             document.querySelector(`.player-${activePlayer}-panel`).classList.remove('active');
